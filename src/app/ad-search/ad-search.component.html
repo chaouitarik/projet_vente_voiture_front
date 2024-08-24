@@ -1,0 +1,15 @@
+<div *ngIf="ads.length > 0; else noResults">
+    <div *ngFor="let ad of ads" class="ad-item">
+      <h2>{{ ad.title }}</h2>
+      <img [src]="ad.imageSrc" alt="Image de {{ ad.title }}" />
+      <p>{{ ad.description }}</p>
+      <p>Prix: {{ ad.price | currency }}</p>
+      <p>Catégorie: {{ ad.category.name }}</p>
+      <!-- Ajoutez d'autres détails ici -->
+    </div>
+  </div>
+  
+  <ng-template #noResults>
+    <p>Aucune annonce trouvée pour "{{ query }}"</p>
+  </ng-template>
+  

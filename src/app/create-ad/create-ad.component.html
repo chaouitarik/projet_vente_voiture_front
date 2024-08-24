@@ -1,0 +1,126 @@
+<div class="create-ad-container">
+    <h2>Créer une Annonce</h2>
+    <form (ngSubmit)="onSubmit()" #adForm="ngForm">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input type="text" id="title" required [(ngModel)]="title" name="title" #titleModel="ngModel">
+        <div *ngIf="titleModel.invalid && titleModel.touched">Le titre est requis.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" required [(ngModel)]="description" name="description" #descriptionModel="ngModel"></textarea>
+        <div *ngIf="descriptionModel.invalid && descriptionModel.touched">La description est requise.</div>
+      </div>
+      <div class="form-group">
+        <label for="villeName">Ville</label>
+        <select id="villeName" required [(ngModel)]="villeName" name="villeName" #villeModel="ngModel">
+          <option value="" disabled selected>Sélectionnez une ville</option>
+          <option *ngFor="let vil of villes" [value]="vil">{{vil}}</option>
+        </select>
+        <div *ngIf="villeModel.invalid && villeModel.touched">La ville est requise.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Prix</label>
+        <input type="number" id="price" required [(ngModel)]="price" name="price" #priceModel="ngModel">
+        <div *ngIf="priceModel.invalid && priceModel.touched">Le prix est requis.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="categoryName">Catégorie</label>
+        <select id="categoryName" required [(ngModel)]="categoryName" name="categoryName" #categoryModel="ngModel">
+          <option value="" disabled selected>Sélectionnez une catégorie</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+        </select>
+        <div *ngIf="categoryModel.invalid && categoryModel.touched">La catégorie est requise.</div>
+      </div>
+      <div class="form-group">
+        <label for="fuelType">Carburant *</label>
+        <div class="fuel-options">
+          <label class="fuel-option">
+            <input type="radio" [(ngModel)]="carburant" name="fuelType" value="Essence" required />
+            <span>Essence</span>
+          </label>
+          <label class="fuel-option">
+            <input type="radio" [(ngModel)]="carburant" name="fuelType" value="Diesel" required />
+            <span>Diesel</span>
+          </label>
+          <label class="fuel-option">
+            <input type="radio" [(ngModel)]="carburant" name="carburant" value="Hybride" required />
+            <span>Hybride</span>
+          </label>
+          <label class="fuel-option">
+            <input type="radio" [(ngModel)]="carburant" name="carburant" value="Electrique" required />
+            <span>Electrique</span>
+          </label>
+          <label class="fuel-option">
+            <input type="radio" [(ngModel)]="carburant" name="carburant" value="GPL" required />
+            <span>GPL</span>
+          </label>
+          <label class="fuel-option">
+            <input type="radio" [(ngModel)]="carburant" name="carburant" value="Gaz naturel (CNG)" required />
+            <span>Gaz naturel (CNG)</span>
+          </label>
+          <label class="fuel-option">
+            <input type="radio" [(ngModel)]="carburant" name="fuelType" value="Autre" required />
+            <span>Autre</span>
+          </label>
+        </div>
+        <div *ngIf="!carburant && adForm.submitted" class="error-message">Le type de carburant est requis.</div>
+      </div>
+      <div class="form-group">
+        <label for="gearboxType">Boîte de vitesse *</label>
+        <div class="gearbox-options">
+          <label class="gearbox-option">
+            <input type="radio" [(ngModel)]=" boiteVitesse" name="gearboxType" value="Manuelle" required />
+            <span>Manuelle</span>
+          </label>
+          <label class="gearbox-option">
+            <input type="radio" [(ngModel)]="boiteVitesse" name="gearboxType" value="Automatique" required />
+            <span>Automatique</span>
+          </label>
+        </div>
+        <div *ngIf="!boiteVitesse && adForm.submitted" class="error-message">Le type de boîte de vitesse est requis.</div>
+      </div>
+      <div class="form-group">
+        <label for="brand">Marque</label>
+        <select id="brand" required [(ngModel)]="selectedBrand" name="brand" (change)="onBrandChange($event)" #brandModel="ngModel">
+          <option value="" disabled selected>Sélectionnez une marque</option>
+          <option *ngFor="let brand of brands" [value]="brand">{{brand}}</option>
+        </select>
+        <div *ngIf="brandModel.invalid && brandModel.touched">La marque est requise.</div>
+        
+      </div>
+      
+      <div class="form-group">
+        <label for="model">Modèle</label>
+        <select id="model" required [(ngModel)]="selectedModel" name="model" #modelModel="ngModel">
+          <option value="" disabled selected>Sélectionnez un modèle</option>
+          <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+        </select>
+        <div *ngIf="modelModel.invalid && modelModel.touched">Le modèle est requis.</div>
+      </div>
+      
+      
+      <div class="form-group">
+        <label for="year">Année modèle *</label>
+        <select id="year" required [(ngModel)]="year" name="year" #yearModel="ngModel">
+          <option value="" disabled selected>Sélectionnez une année</option>
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+        <div *ngIf="yearModel.invalid && yearModel.touched">L'année modèle est requise.</div>
+      </div>
+      
+      
+      
+  
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" id="image" (change)="onFileChange($event)">
+      </div>
+  
+      <button type="submit" [disabled]="adForm.invalid">Créer l'annonce</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Barre de recherche -->
+    <div class="col-md-3">
+      <div class="card p-3 mb-4">
+        <h5 class="card-title">Rechercher</h5>
+        <!-- Filtres de recherche -->
+        <div class="filter-section">
+          <h6>Marque</h6>
+          <select class="form-select mb-3" [(ngModel)]="selectedBrand" (change)="onBrandChange($event)">
+            <option value="">Toutes les marques</option>
+            <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+          </select>
+
+          <h6>Modèle</h6>
+          <select class="form-select mb-3" [(ngModel)]="selectedModel" (change)="onModelChange($event)" [disabled]="!models.length">
+            <option value="">Tous les modèles</option>
+            <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+          </select>
+
+          <h6>Année</h6>
+          <select class="form-select mb-3" [(ngModel)]="selectedYear" (change)="applyFilters()">
+            <option value="">Toutes les années</option>
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
+
+          <h6>Transmission</h6>
+          <select class="form-select mb-3" [(ngModel)]="selectedTransmission" (change)="applyFilters()">
+            <option value="">Toutes les transmissions</option>
+            <option *ngFor="let transmission of transmissions" [value]="transmission">{{ transmission }}</option>
+          </select>
+
+          <h6>Énergie</h6>
+          <select class="form-select mb-3" [(ngModel)]="selectedEnergy" (change)="applyFilters()">
+            <option value="">Toutes les énergies</option>
+            <option *ngFor="let energy of fuelTypes" [value]="energy">{{ energy }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liste des annonces -->
+    <div class="col-md-9">
+      <div class="row">
+        <div *ngFor="let ad of filteredAds" class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <img src="assets/images/user-avatar.jpg" alt="{{ ad.user.username }}" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+              <div>
+                <h5 class="card-title mb-0">{{ ad.user.username }}</h5>
+                <small class="text-muted">{{ ad.timeAgo }}</small>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <div class="ad-image-container position-relative">
+                <img [src]="ad.imageSrc" alt="Image de {{ ad.title }}" class="img-fluid w-100" (error)="onImageError($event)">
+                <div class="image-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
+                  <i class="fa fa-camera text-white"></i>
+                </div>
+              </div>
+              <div class="mt-2">
+                <p class="mb-1"><i class="fa fa-map-marker me-2"></i>{{ ad.ville }}</p>
+                <h5 class="ad-title mb-2">{{ ad.title }}</h5>
+                <div class="ad-features d-flex justify-content-between">
+                  <span class="badge bg-primary">{{ ad.carburant }}</span>
+                  <span class="badge bg-secondary">{{ ad.brand }}</span>
+                  <span class="badge bg-info">{{ ad.model }}</span>
+                </div>
+                <h4 class="ad-price text-success mt-3">{{ ad.price | currency:'DH' }}</h4>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+              <button class="btn btn-outline-danger"><i class="fa fa-heart"></i> Ajouter aux favoris</button>
+              <button (click)="viewAd(ad)" class="btn btn-primary">Voir l'annonce</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

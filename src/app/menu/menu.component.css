@@ -1,0 +1,186 @@
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007bff;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  height: 50px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f2f2f2;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-bar input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.search-bar button {
+  background-color: white;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-actions a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background-color: #007bff;
+  border: 1px solid white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.user-actions a:hover {
+  background-color: white;
+  color: #007bff;
+}
+
+.post-ad-button {
+  background-color: #a72828;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.post-ad-button:hover {
+  background-color: #218838;
+}
+
+.navbar .btn {
+  background-color: #dc3545;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar .btn:hover {
+  background-color: #c82333;
+}
+/* Style pour la dropdown dans le menu */
+.main-nav .navbar {
+  position: relative;
+  display: inline-block;
+}
+
+.main-nav .dropdown-content {
+  display: none; /* Cache la liste par défaut */
+  position: absolute;
+  background-color: #333; /* Couleur de fond de la liste */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0; /* Alignement à droite */
+}
+
+.main-nav .dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.main-nav .dropdown-content a:hover {
+  background-color: #575757; /* Change le fond au survol */
+}
+
+.main-nav .dropdown:hover .dropdown-content {
+  display: block; /* Affiche la liste lorsque la souris survole le parent */
+}
+
+.main-nav .dropdown button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.main-nav .dropdown button:hover {
+  background-color: #218838;
+}

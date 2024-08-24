@@ -1,0 +1,36 @@
+<div *ngIf="ad" class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">{{ ad.title }}</h2>
+    </div>
+    <img [src]="ad.imageSrc" alt="Image de {{ ad.title }}" class="card-img-top img-fluid">
+    <div class="card-body">
+      <p class="card-text">{{ ad.description }}</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Ville:</strong> {{ ad.ville }}</li>
+        <li class="list-group-item"><strong>Marque:</strong> {{ ad.brand }}</li>
+        <li class="list-group-item"><strong>Modèle:</strong> {{ ad.model }}</li>
+        <li class="list-group-item"><strong>Prix:</strong> {{ ad.price | currency }}</li>
+        <li class="list-group-item"><strong>Catégorie:</strong> {{ ad.category.name }}</li>
+        <li class="list-group-item"><strong>Carburant:</strong> {{ ad.carburant }}</li>
+        <li class="list-group-item"><strong>Boîte de Vitesse:</strong> {{ ad.boiteVitesse }}</li>
+        <!-- Ajoutez d'autres détails ici -->
+      </ul>
+    </div>
+    <div class="contact-buttons">
+      <button class="btn-whatsapp"(click)="openWhatsApp()">
+        <i class="fa fa-whatsapp"></i>
+      </button>
+      <button class="btn-message">
+        <i class="fa fa-comment"></i>
+      </button>
+      <button class="btn-call">
+        <i class="fa fa-phone"></i> Demander le prix
+      </button>
+    </div>
+    <!-- <div class="card-footer text-end" *ngIf="authService.isAuthenticated">
+      <button class="btn btn-primary me-2" >Modifier</button>
+      <button class="btn btn-danger" >Supprimer</button>
+    </div> -->
+  </div>
+</div>

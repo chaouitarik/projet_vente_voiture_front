@@ -1,0 +1,57 @@
+.card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+  
+  .card-img-top {
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .list-group-item {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+  
+  .card-footer {
+    background-color: #f8f9fa;
+  }
+  .contact-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .contact-buttons button {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .contact-buttons .btn-whatsapp {
+    background-color: #25D366; /* Couleur WhatsApp */
+  }
+  
+  .contact-buttons .btn-message {
+    background-color: #00AEEF; /* Couleur des messages */
+  }
+  
+  .contact-buttons .btn-call {
+    background-color: #007bff; /* Couleur du bouton Appel */
+    border-radius: 20px; /* Arrondir les bords du bouton "Demander le prix" */
+    width: auto;
+    padding: 10px 20px; /* Espacement autour du texte */
+    height: auto;
+  }
+  
+  .contact-buttons .btn-call i {
+    margin-right: 10px; /* Espacement entre l'icône et le texte */
+  }
+  

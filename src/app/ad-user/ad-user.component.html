@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Annonces de l'utilisateur</h2>
+  <div class="row" *ngIf="ads.length > 0; else noAds">
+    <div *ngFor="let ad of ads" class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img [src]="ad.imageSrc" alt="Image de {{ ad.title }}" class="card-img-top" (error)="onImageError($event)">
+        <div class="card-body">
+          <h5 class="card-title">{{ ad.title }}</h5>
+          <p class="card-text">{{ ad.description }}</p>
+          <p class="ad-price text-primary">{{ ad.price | currency }}</p>
+          <p class="ad-category text-muted">{{ ad.category.name }}</p>
+          <button (click)="viewAd(ad)" class="btn btn-primary">Voir l'annonce</button>
+          <button (click)="deleteAd(ad)" class="btn btn-danger ms-2">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noAds>
+    <p>Aucune annonce trouvée pour cet utilisateur.</p>
+  </ng-template>
+</div>

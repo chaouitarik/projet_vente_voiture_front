@@ -1,0 +1,52 @@
+<header>
+    <nav class="main-nav">
+      <div class="logo">
+        <a routerLink="/">
+          <img src="assets/images/marketlogo.jpg" alt="Le Bon Coin Logo">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a routerLink="/ads">Toutes les annonces</a></li>
+        <li class="dropdown">
+          <a routerLink="/category/immobilier">Immobilier</a>
+          <div class="dropdown-content">
+            <a routerLink="/category/immobilier/ventes">Ventes immobilières</a>
+            <a routerLink="user/:id">mes announces</a>
+            <!-- Ajouter d'autres sous-catégories ici -->
+          </div>
+        </li>
+        <li class="dropdown">
+          <a routerLink="/category/vehicules">Véhicules</a>
+          <div class="dropdown-content">
+            <a routerLink="/category/vehicules/voitures">Voitures</a>
+            <a routerLink="/category/vehicules/motos">Motos</a>
+            <!-- Ajouter d'autres sous-catégories ici -->
+          </div>
+        </li>
+        <!-- Ajouter d'autres catégories ici -->
+      </ul>
+      <div class="search-bar">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher des annonces" />
+        <button (click)="searchAds()">Rechercher</button>
+      </div>
+      <div class="user-actions">
+        <ul class="navbar" *ngIf="authService.isAuthenticated==false">
+        <a routerLink="/login">Connexion</a>
+        <a routerLink="/register">Inscription</a>
+        </ul>
+        <a routerLink="/create-ad" class="post-ad-button">Déposer une annonce</a>
+      </div>
+     
+        <ul class="navbar" *ngIf="authService.isAuthenticated==true">
+          <li class="dropdown">
+            <button (click)="handlelogout()" class="btn btn-success">Logout</button>
+              <div class="dropdown-content">
+                  <a href="user/:id">Voir mes announces</a>
+                  <a href="#">Option 2</a>
+                  <a href="#">Option 3</a>
+              </div>
+          </li>
+      </ul>
+    </nav>
+  </header>
+  

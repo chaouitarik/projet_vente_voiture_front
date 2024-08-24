@@ -1,0 +1,30 @@
+<div class="register-container">
+    <h2>Inscription</h2>
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" id="username" required [(ngModel)]="username" name="username" #usernameModel="ngModel">
+        <div *ngIf="usernameModel.invalid && usernameModel.touched">Le nom d'utilisateur est requis.</div>
+      </div>
+
+      <div class="form-group">
+        phoneNumber        <input type="text" id="phoneNumber" required [(ngModel)]="phoneNumber" name="phoneNumber" #phoneNumberModel="ngModel">
+        <div *ngIf="phoneNumberModel.invalid && phoneNumberModel.touched">Le telephone est requis.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required [(ngModel)]="email" name="email" #emailModel="ngModel">
+        <div *ngIf="emailModel.invalid && emailModel.touched">L'email est requis et doit être valide.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" required [(ngModel)]="password" name="password" #passwordModel="ngModel">
+        <div *ngIf="passwordModel.invalid && passwordModel.touched">Le mot de passe est requis.</div>
+      </div>
+  
+      <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
+    </form>
+  </div>
+  
