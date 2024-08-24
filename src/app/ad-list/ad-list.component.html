@@ -19,10 +19,9 @@
           </select>
 
           <h6>Année</h6>
-          <select class="form-select mb-3" [(ngModel)]="selectedYear" (change)="applyFilters()">
-            <option value="">Toutes les années</option>
-            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-          </select>
+          <input type="range" min="1990" max="2024" step="1" [(ngModel)]="minYear" (input)="applyFilters()">
+          <input type="range" min="1990" max="2024" step="1" [(ngModel)]="maxYear" (input)="applyFilters()">
+          <p>{{ minYear }} - {{ maxYear }}</p>
 
           <h6>Transmission</h6>
           <select class="form-select mb-3" [(ngModel)]="selectedTransmission" (change)="applyFilters()">
@@ -35,6 +34,16 @@
             <option value="">Toutes les énergies</option>
             <option *ngFor="let energy of fuelTypes" [value]="energy">{{ energy }}</option>
           </select>
+
+          <h6>Échelle des prix</h6>
+          <input type="range" min="500" max="200000" step="10000" [(ngModel)]="minPrice" (input)="applyFilters()">
+          <input type="range" min="500" max="200000" step="10000" [(ngModel)]="maxPrice" (input)="applyFilters()">
+          <p>{{ minPrice }} Dh - {{ maxPrice }} Dh</p>
+
+          <h6>Kilométrage</h6>
+          <input type="range" min="0" max="500000" step="10000" [(ngModel)]="minKm" (input)="applyFilters()">
+          <input type="range" min="0" max="500000" step="10000" [(ngModel)]="maxKm" (input)="applyFilters()">
+          <p>{{ minKm }} km - {{ maxKm }} km</p>
         </div>
       </div>
     </div>

@@ -26,6 +26,12 @@
         <input type="number" id="price" required [(ngModel)]="price" name="price" #priceModel="ngModel">
         <div *ngIf="priceModel.invalid && priceModel.touched">Le prix est requis.</div>
       </div>
+
+      <div class="form-group">
+        <label for="distance">Distance</label>
+        <input type="number" id="distance" required [(ngModel)]="km" name="distance" #distanceModel="ngModel">
+        <div *ngIf="distanceModel.invalid && distanceModel.touched">La distance est requis.</div>
+      </div>
   
       <div class="form-group">
         <label for="categoryName">Catégorie</label>

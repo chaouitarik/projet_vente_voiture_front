@@ -15,7 +15,13 @@ interface ModelDictionary {
 export class AdListComponent implements OnInit {
   ads: Ad[] = [];
   filteredAds: any[] = [];
- 
+  // Valeurs pour les curseurs
+  minPrice: number = 500;
+  maxPrice: number = 2000000;
+  minKm: number = 1000;
+  maxKm: number = 3000000;
+  minYear: number = 2009;
+  maxYear: number = 2024;
 
   // Filtres
   selectedBrand: string | undefined;
@@ -118,18 +124,40 @@ export class AdListComponent implements OnInit {
     return `${diffDays} jours`;
 }
 applyFilters(): void {
+  console.log('Applying filters...');
+  console.log('Selected Brand:', this.selectedBrand);
+  console.log('Selected Model:', this.selectedModel);
+  console.log('Selected Year:', this.selectedYear);
+  console.log('Selected Transmission:', this.selectedTransmission);
+  console.log('Selected Energy:', this.selectedEnergy);
+  console.log('Price Range:', this.minPrice, this.maxPrice);
+  console.log('Km Range:', this.minKm, this.maxKm);
+  console.log('Year Range:', this.minYear, this.maxYear);
+
   this.filteredAds = this.ads.filter(ad => {
-    return (!this.selectedBrand || ad.brand === this.selectedBrand) &&
-           (!this.selectedModel || ad.model === this.selectedModel) &&
-           (!this.selectedYear || ad.year === this.selectedYear) &&
-           (!this.selectedTransmission || ad.boiteVitesse === this.selectedTransmission) &&
-           (!this.selectedEnergy || ad.carburant === this.selectedEnergy);
+    const adYear = parseInt(ad.year, 10); 
+    console.log('ad.boiteVitesse:', ad.boiteVitesse); 
+    const matchesBrand = !this.selectedBrand || ad.brand === this.selectedBrand;
+    const matchesModel = !this.selectedModel || ad.model === this.selectedModel;
+    const matchesYear = adYear >= this.minYear && adYear <= this.maxYear;
+    const matchesPrice = ad.price >= this.minPrice && ad.price <= this.maxPrice;
+    const matchesKm = ad.km >= this.minKm && ad.km <= this.maxKm;
+    const matchesTransmission = !this.selectedTransmission || ad.boiteVitesse === this.selectedTransmission;
+    const matchesEnergy = !this.selectedEnergy || ad.carburant === this.selectedEnergy;
+    console.log('matchesTransmission', matchesTransmission);
+    return matchesBrand && matchesModel && matchesYear && matchesPrice && matchesKm && matchesTransmission && matchesEnergy;
   });
+  console.log('this.filteredAds', this.filteredAds);
 }
+
+
 onBrandChange(event: Event): void {
   const selectElement = event.target as HTMLSelectElement;
   this.selectedBrand = selectElement.value;
 
+  console.log('Selected Brand:', this.selectedBrand);
+
+  // Mettez à jour les modèles disponibles pour la marque sélectionnée
   if (this.selectedBrand) {
     this.models = this.allModels[this.selectedBrand] || [];
     this.selectedModel = ''; // Réinitialiser la sélection du modèle
@@ -137,27 +165,20 @@ onBrandChange(event: Event): void {
     this.models = [];
   }
 
+  // Appliquer les filtres
   this.applyFilters();
 }
 
 onModelChange(event: Event): void {
   const selectElement = event.target as HTMLSelectElement;
   this.selectedModel = selectElement.value;
-
-  // Filtrer les annonces par la marque et le modèle sélectionnés
-  if (this.selectedModel) {
-    this.filteredAds = this.ads.filter(ad => 
-      ad.brand === this.selectedBrand && ad.model === this.selectedModel);
-  } else if (this.selectedBrand) {
-    this.filteredAds = this.ads.filter(ad => ad.brand === this.selectedBrand);
-  } else {
-    this.filteredAds = this.ads;
-  }
+  this.applyFilters();
 }
 
   fetchAds(): void {
     this.adService.getAds().subscribe(
       (ads) => {
+        console.log('Ads:', ads);
         this.ads = ads;
         this.filteredAds = ads;
         this.ads.forEach(ad => {

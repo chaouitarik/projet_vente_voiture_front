@@ -11,6 +11,7 @@ export interface Ad {
   timeAgo :string ;
   postedDate: Date;
   brand :string ;
+  km:number;
   model :string ;
   year :string ;
   user : {

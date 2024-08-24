@@ -18,6 +18,7 @@ export class CreateAdComponent {
   categoryName: string = '';
   image: File | null = null;
   brand :string = '' ;
+  km :number | undefined;
   model :string = '';
   villeName :string | null = null ;
   year :string = '';
@@ -127,7 +128,7 @@ console.log('Brand:', this.brand);
 console.log('Model:', this.model);
 console.log('Year:', this.year);
 console.log('City:', this.villeName);
-    if (this.title && this.description && this.price && this.categoryName && this.carburant &&  this.boiteVitesse && this.selectedBrand && this.selectedModel && this.year &&this.villeName) {
+    if (this.title && this.description && this.price && this.categoryName && this.carburant &&  this.boiteVitesse && this.selectedBrand && this.selectedModel && this.year &&this.villeName &&this.km) {
       const adData = new FormData();
       const adDetails = {
         title: this.title,
@@ -136,6 +137,7 @@ console.log('City:', this.villeName);
         categoryName: this.categoryName,
         carburant: this.carburant,
         boiteVitesse : this.boiteVitesse ,
+        km : this.km,
         brand :this.selectedBrand ,
         model :this.selectedModel ,
         year :this.year ,
