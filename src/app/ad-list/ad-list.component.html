@@ -36,8 +36,8 @@
           </select>
 
           <h6>Échelle des prix</h6>
-          <input type="range" min="500" max="200000" step="10000" [(ngModel)]="minPrice" (input)="applyFilters()">
-          <input type="range" min="500" max="200000" step="10000" [(ngModel)]="maxPrice" (input)="applyFilters()">
+          <input type="range" min="0" max="200000" step="10000" [(ngModel)]="minPrice" (input)="applyFilters()">
+          <input type="range" min="0" max="200000" step="10000" [(ngModel)]="maxPrice" (input)="applyFilters()">
           <p>{{ minPrice }} Dh - {{ maxPrice }} Dh</p>
 
           <h6>Kilométrage</h6>

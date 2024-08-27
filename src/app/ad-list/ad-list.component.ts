@@ -18,7 +18,7 @@ export class AdListComponent implements OnInit {
   // Valeurs pour les curseurs
   minPrice: number = 500;
   maxPrice: number = 2000000;
-  minKm: number = 1000;
+  minKm: number = 100;
   maxKm: number = 3000000;
   minYear: number = 2009;
   maxYear: number = 2024;
@@ -145,7 +145,9 @@ applyFilters(): void {
     const matchesTransmission = !this.selectedTransmission || ad.boiteVitesse === this.selectedTransmission;
     const matchesEnergy = !this.selectedEnergy || ad.carburant === this.selectedEnergy;
     console.log('matchesTransmission', matchesTransmission);
-    return matchesBrand && matchesModel && matchesYear && matchesPrice && matchesKm && matchesTransmission && matchesEnergy;
+    return matchesBrand && matchesModel && matchesYear && matchesEnergy  && matchesTransmission;
+    //  && matchesPrice && matchesEnergy;
+    //   && matchesKm  ;
   });
   console.log('this.filteredAds', this.filteredAds);
 }
