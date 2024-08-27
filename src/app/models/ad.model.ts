@@ -22,5 +22,6 @@ export interface Ad {
     id: number;
     name: string;
   };
-  imageSrc?: string; // Chemin de l'image, si applicable
+  imageSrc?: string;
+  imageSrcList: string[]; // Chemin de l'image, si applicable
 }

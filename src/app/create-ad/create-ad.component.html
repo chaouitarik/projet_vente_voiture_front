@@ -119,12 +119,12 @@
       </div>
       
       
-      
-  
       <div class="form-group">
-        <label for="image">Image</label>
-        <input type="file" id="image" (change)="onFileChange($event)">
+        <label for="images">Images</label>
+        <input type="file" id="images" (change)="onFileChange($event)" multiple>
       </div>
+  
+      
   
       <button type="submit" [disabled]="adForm.invalid">Créer l'annonce</button>
     </form>

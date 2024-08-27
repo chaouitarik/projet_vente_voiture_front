@@ -27,26 +27,22 @@ export class AdDetailComponent implements OnInit {
     this.adService.getAd(id).subscribe(
       (ad) => {
         this.ad = ad;
-        this.loadImage(ad);
+        this.loadImages(ad);
       },
       (error) => {
         console.error('Erreur lors de la récupération des détails de l\'annonce', error);
       }
     );
   }
-
-  loadImage(ad: Ad): void {
-    this.adService.getImage(ad.id).subscribe(
-      (blob) => {
-        let reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = () => {
-          ad.imageSrc = reader.result as string;
-        };
+  loadImages(ad: Ad): void {
+    this.adService.getImages(ad.id).subscribe(
+      (imageBase64List) => {
+        ad.imageSrcList = imageBase64List.map(base64 => `data:image/jpeg;base64,${base64}`);
       },
       (error) => {
-        console.error('Erreur lors de la récupération de l\'image', error);
+        console.error('Erreur lors de la récupération des images', error);
       }
     );
   }
 }
+

@@ -12,6 +12,7 @@ interface ModelDictionary {
   styleUrls: ['./create-ad.component.css']
 })
 export class CreateAdComponent {
+  images: File[] = []; 
   title: string = '';
   description: string = '';
   price: number | undefined;
@@ -109,7 +110,7 @@ export class CreateAdComponent {
   constructor(private adService: AdService, private router: Router,private authService: AuthService) {}
 
   onFileChange(event: any) {
-    this.image = event.target.files[0];
+    this.images = Array.from(event.target.files);
   }
   onBrandChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
@@ -148,9 +149,9 @@ console.log('City:', this.villeName);
   
       adData.append('adData', new Blob([JSON.stringify(adDetails)], { type: "application/json" }));
       
-      if (this.image) {
-        adData.append('image', this.image);
-      }
+      this.images.forEach((image) => {
+        adData.append('images', image); // Append chaque image avec le même nom de champ
+      });
       const token = this.authService.getToken();  // Récupérer le token à partir du service d'authentification
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}` // Ajouter le token à l'en-tête Authorization

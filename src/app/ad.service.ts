@@ -52,4 +52,8 @@ export class AdService {
     return this.http.post<any>(this.apiUrl, adData, { headers });
   }
 
+  getImages(adId: number): Observable<Blob[]> {
+    return this.http.get<Blob[]>(`${this.apiUrl}/${adId}/images`);
+}
+
 }
