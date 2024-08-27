@@ -54,4 +54,19 @@
   .contact-buttons .btn-call i {
     margin-right: 10px; /* Espacement entre l'icône et le texte */
   }
+  .image-container {
+    display: flex;
+    flex-direction: row; /* Display images in a row */
+    gap: 10px; /* Adjust the spacing between images */
+    overflow-x: auto; /* Add horizontal scroll if there are too many images */
+    align-items: center; /* Align images vertically */
+  }
+  
+  .image-item img {
+    max-width: 100%; /* Ensure the image fits within its container */
+    height: auto;
+    border-radius: 8px; /* Optional: Add some border-radius to images */
+    object-fit: cover; /* Ensure the image covers its container */
+  }
+  
   
