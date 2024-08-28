@@ -12,6 +12,7 @@ export class RegisterComponent {
   email: string | undefined;
   password: string | undefined;
   phoneNumber:Number | undefined ;
+  confirmPassword: string | undefined;
 
   constructor(private userService: UserService, private router: Router) {}
 
