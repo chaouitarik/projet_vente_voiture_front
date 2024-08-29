@@ -69,4 +69,21 @@
     object-fit: cover; /* Ensure the image covers its container */
   }
   
+  .img-fluid {
+    max-height: 250px;
+    object-fit: cover;
+  }
+  
+  .row .col-12 img {
+    max-height: 500px;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  button.btn {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
   
