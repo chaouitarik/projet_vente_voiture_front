@@ -15,6 +15,8 @@ import { AuthService } from './auth.service';
 import { AuthInterceptor } from './auth-interceptor';
 import { AdSearchComponent } from './ad-search/ad-search.component';
 import { AdUserComponent } from './ad-user/ad-user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PhoneModalComponent } from './phone-modal/phone-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,14 @@ import { AdUserComponent } from './ad-user/ad-user.component';
     MenuComponent,
     AdDetailComponent,
     AdSearchComponent,
-    AdUserComponent
+    AdUserComponent,
+    PhoneModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule,
     FormsModule
   ],
   providers: [ 

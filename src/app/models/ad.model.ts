@@ -16,7 +16,8 @@ export interface Ad {
   year :string ;
   user : {
     id: number;
-    username :string
+    username :string;
+    phoneNumber :string ;
   }
   category: {
     id: number;

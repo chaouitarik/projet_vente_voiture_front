@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AdService } from '../ad.service';
 import { Ad } from '../models/ad.model';
 import { AuthService } from '../auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PhoneModalComponent } from '../phone-modal/phone-modal.component';
 
 @Component({
   selector: 'app-ad-detail',
@@ -10,9 +12,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./ad-detail.component.css']
 })
 export class AdDetailComponent implements OnInit {
-  ad: Ad | undefined;
+  ad: Ad | undefined ;
 
-  constructor(private route: ActivatedRoute,private adService: AdService,public authService: AuthService
+  constructor(private route: ActivatedRoute,private adService: AdService,public authService: AuthService,private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,14 @@ export class AdDetailComponent implements OnInit {
         console.error('Erreur lors de la récupération des images', error);
       }
     );
+  }
+  openPhoneModal(): void {
+  
+  if (this.ad && this.ad.user.phoneNumber) {
+      console.log("this.ad.user.phonenumber",this.ad.user.phoneNumber);
+      const modalRef = this.modalService.open(PhoneModalComponent);
+      modalRef.componentInstance.phoneNumber = this.ad.user.phoneNumber;
+    }
   }
 }
 
