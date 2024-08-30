@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdService } from '../ad.service';
 import { Ad } from '../models/ad.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Time } from '@angular/common';
 import * as moment from 'moment';
 interface ModelDictionary {
@@ -15,6 +15,7 @@ interface ModelDictionary {
 export class AdListComponent implements OnInit {
   ads: Ad[] = [];
   filteredAds: any[] = [];
+  query: string = ''; 
   // Valeurs pour les curseurs
   minPrice: number = 500;
   maxPrice: number = 2000000;
@@ -93,10 +94,13 @@ export class AdListComponent implements OnInit {
 
   cities: string[] = ['Ville 1', 'Ville 2']; // Remplacez par les vraies villes
 
-  constructor(private adService: AdService, private router: Router) {}
+  constructor(private route: ActivatedRoute,private adService: AdService, private router: Router) {}
 
   ngOnInit(): void {
-    this.fetchAds();
+    this.route.queryParams.subscribe(params => {
+      this.query = params['q'] || '';
+      this.fetchAds();
+    });
   }
   loadImage(ad: Ad): void {
     this.adService.getImage(ad.id).subscribe(
@@ -124,33 +128,38 @@ export class AdListComponent implements OnInit {
     return `${diffDays} jours`;
 }
 applyFilters(): void {
-  console.log('Applying filters...');
-  console.log('Selected Brand:', this.selectedBrand);
-  console.log('Selected Model:', this.selectedModel);
-  console.log('Selected Year:', this.selectedYear);
-  console.log('Selected Transmission:', this.selectedTransmission);
-  console.log('Selected Energy:', this.selectedEnergy);
-  console.log('Price Range:', this.minPrice, this.maxPrice);
-  console.log('Km Range:', this.minKm, this.maxKm);
-  console.log('Year Range:', this.minYear, this.maxYear);
-
   this.filteredAds = this.ads.filter(ad => {
-    const adYear = parseInt(ad.year, 10); 
-    console.log('ad.boiteVitesse:', ad.boiteVitesse); 
     const matchesBrand = !this.selectedBrand || ad.brand === this.selectedBrand;
     const matchesModel = !this.selectedModel || ad.model === this.selectedModel;
-    const matchesYear = adYear >= this.minYear && adYear <= this.maxYear;
+    const matchesYear = parseInt(ad.year, 10) >= this.minYear && parseInt(ad.year, 10) <= this.maxYear;
     const matchesPrice = ad.price >= this.minPrice && ad.price <= this.maxPrice;
     const matchesKm = ad.km >= this.minKm && ad.km <= this.maxKm;
     const matchesTransmission = !this.selectedTransmission || ad.boiteVitesse === this.selectedTransmission;
     const matchesEnergy = !this.selectedEnergy || ad.carburant === this.selectedEnergy;
-    console.log('matchesTransmission', matchesTransmission);
-    return matchesBrand && matchesModel && matchesYear && matchesEnergy  && matchesTransmission;
-    //  && matchesPrice && matchesEnergy;
-    //   && matchesKm  ;
+    const matchesQuery = !this.query || ad.title.toLowerCase().includes(this.query.toLowerCase()) ||ad.description.toLowerCase().includes(this.query.toLowerCase());
+    
+    return matchesBrand && matchesModel && matchesYear && matchesPrice  && matchesTransmission && matchesEnergy && matchesQuery;
+    //&& matchesKm
   });
-  console.log('this.filteredAds', this.filteredAds);
 }
+searchAds(): void {
+  console.log("query", this.query);
+  if (this.query) {
+    this.adService.searchAds(this.query).subscribe(
+      (ads) => {
+        this.filteredAds = ads;
+        this.filteredAds.forEach(ad => this.loadImage(ad));
+      },
+      (error) => {
+        console.error('Erreur lors de la recherche des annonces', error);
+      }
+    );
+  } else {
+    this.filteredAds = this.ads; // Afficher toutes les annonces si la requête est vide
+  }
+}
+
+
 
 
 onBrandChange(event: Event): void {
@@ -208,4 +217,5 @@ onModelChange(event: Event): void {
   viewAd(ad: Ad): void {
     this.router.navigate(['/ads', ad.id]);
   }
+ 
 }

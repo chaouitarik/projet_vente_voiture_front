@@ -4,6 +4,11 @@
     <div class="col-md-3">
       <div class="card p-3 mb-4">
         <h5 class="card-title">Rechercher</h5>
+        <!-- Champ de recherche -->
+        <div class="form-group mb-3">
+          <input type="text" class="form-control" placeholder="Rechercher par mot-clé" [(ngModel)]="query" (input)="searchAds()">
+        </div>
+        
         <!-- Filtres de recherche -->
         <div class="filter-section">
           <h6>Marque</h6>

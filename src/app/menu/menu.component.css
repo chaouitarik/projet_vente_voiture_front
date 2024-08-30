@@ -184,3 +184,20 @@
 .main-nav .dropdown button:hover {
   background-color: #218838;
 }
+.btn-orange {
+  background-color: #f56320; /* Couleur orange */
+  color: white;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.btn-orange i {
+  margin-right: 5px; /* Espace entre l'icône et le texte */
+}
+
+.btn-orange:hover {
+  background-color: #e05216; /* Couleur légèrement plus foncée pour le hover */
+}

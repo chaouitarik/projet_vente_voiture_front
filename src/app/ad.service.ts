@@ -28,9 +28,9 @@ export class AdService {
     return this.http.get<Ad[]>(this.apiUrlads);
   }
 
-  searchAds(query: string): Observable<any[]> {
+  searchAds(query: string): Observable<Ad[]> {
     const url = `${this.apiUrl}/search?q=${encodeURIComponent(query)}`;
-  return this.http.get<any[]>(url);
+    return this.http.get<Ad[]>(url);
   }
   
   getImage(adId: number): Observable<Blob> {

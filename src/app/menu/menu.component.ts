@@ -15,10 +15,10 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  searchAds() {
+ 
+  searchAds(): void {
     if (this.searchQuery.trim()) {
-      console.log("this.searchQuery",this.searchQuery);
-      this.router.navigate(['/ads/search'], { queryParams: { q: this.searchQuery } });
+      this.router.navigate(['/ads'], { queryParams: { q: this.searchQuery } });
     }
   }
 

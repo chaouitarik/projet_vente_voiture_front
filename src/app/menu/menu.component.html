@@ -25,16 +25,22 @@
         </li>
         <!-- Ajouter d'autres catégories ici -->
       </ul>
-      <div class="search-bar">
+     <!--  <div class="search-bar">
         <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher des annonces" />
         <button (click)="searchAds()">Rechercher</button>
-      </div>
+      </div> -->
+      <form class="d-flex" (submit)="searchAds()">
+        <input class="form-control me-2" type="search" placeholder="Rechercher" [(ngModel)]="searchQuery" name="query">
+        <button class="btn btn-outline-success" type="submit">Rechercher</button>
+      </form>
       <div class="user-actions">
         <ul class="navbar" *ngIf="authService.isAuthenticated==false">
         <a routerLink="/login">Connexion</a>
         <a routerLink="/register">Inscription</a>
         </ul>
-        <a routerLink="/create-ad" class="post-ad-button">Déposer une annonce</a>
+        <button class="btn btn-orange" routerLink="/create-ad">
+          <i class ="fa fa-plus-circle" ></i> Déposer une annonce
+        </button>
       </div>
      
         <ul class="navbar" *ngIf="authService.isAuthenticated==true">
